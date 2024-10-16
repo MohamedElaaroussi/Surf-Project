@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const FeaturedPost = ({ title, excerpt, image }) => (
+interface FeaturedPostProps {
+  title: string;      // Le titre est une chaîne de caractères
+  excerpt: string;    // L'extrait est une chaîne de caractères
+  image: string;      // L'image est un URL (chaîne de caractères)
+}
+
+const FeaturedPost: React.FC<FeaturedPostProps> = ({ title, excerpt, image }) => (
   <div className="bg-white shadow-lg rounded-lg overflow-hidden">
     <img src={image} alt={title} className="w-full h-64 object-cover" />
     <div className="p-6">

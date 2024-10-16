@@ -1,6 +1,14 @@
 import React from 'react';
 
-const VoyageCard = ({ destination, description, duration, price, image }) => (
+
+interface FeaturedPostProps {
+  destination: string;      // Le titre est une chaîne de caractères
+  description: string;    // L'extrait est une chaîne de caractères
+  duration:string,
+  image: string;      // L'image est un URL (chaîne de caractères)
+  price: string;
+}
+const VoyageCard: React.FC<FeaturedPostProps> = ({ destination, description, duration, price, image }) => (
   <div className="bg-white shadow-lg rounded-lg overflow-hidden">
     <img src={image} alt={destination} className="w-full h-48 object-cover" />
     <div className="p-4">

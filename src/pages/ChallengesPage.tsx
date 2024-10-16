@@ -1,6 +1,13 @@
 import React from 'react';
 
-const ChallengeCard = ({ title, description, duration, image }) => (
+interface FeaturedPostProps {
+  title: string;      // Le titre est une chaîne de caractères
+  description: string;    // L'extrait est une chaîne de caractères
+  duration:string,
+  image: string;      // L'image est un URL (chaîne de caractères)
+}
+
+const ChallengeCard: React.FC<FeaturedPostProps> = ({ title, description, duration, image }) => (
   <div className="bg-white shadow-lg rounded-lg overflow-hidden">
     <img src={image} alt={title} className="w-full h-48 object-cover" />
     <div className="p-4">

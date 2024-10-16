@@ -1,6 +1,12 @@
 import React from 'react';
+interface FeaturedPostProps {
+  name: string;      // Le titre est une chaîne de caractères
+  role: string;    // L'extrait est une chaîne de caractères
+  bio:string,
+  image: string;      // L'image est un URL (chaîne de caractères)
+}
 
-const TeamMemberCard = ({ name, role, bio, image }) => (
+const TeamMemberCard: React.FC<FeaturedPostProps> = ({ name, role, bio, image }) => (
   <div className="bg-white shadow-lg rounded-lg overflow-hidden">
     <img src={image} alt={name} className="w-full h-48 object-cover" />
     <div className="p-4">

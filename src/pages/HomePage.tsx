@@ -28,9 +28,9 @@ const HomePage = () => {
       <div>
         <a
           href="https://wa.me/+212653175243?text=Surf_beach_notification_with_abdeillah"
-          class="btn-whatsapp-pulse"
+          className="btn-whatsapp-pulse"
         >
-          <i class="fab fa-whatsapp"></i>
+          <i className="fab fa-whatsapp"></i>
         </a>
       </div>
     </div>

@@ -3,7 +3,7 @@ import React from 'react';
 const AboutPage = () => {
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-      <video src="/images/about-surfblog.jpg" alt="À propos de SurfBlog" className="w-full h-64 object-cover" />
+      <video src="/images/about-surfblog.jpg"  className="w-full h-64 object-cover" />
       <div className="p-8">
         <h1 className="text-3xl font-bold mb-4">À propos de SurfBlog</h1>
         <p className="text-gray-700 mb-6">
