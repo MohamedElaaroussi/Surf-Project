@@ -11,13 +11,10 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,              // Ajoute cette ligne pour autoriser les fichiers .js et .jsx
+    "checkJs": false               // Optionnel : désactive la vérification stricte des fichiers JS
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist"],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-  ]
+  "exclude": ["node_modules", "dist"]
 }
