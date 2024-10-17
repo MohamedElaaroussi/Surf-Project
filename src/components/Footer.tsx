@@ -17,12 +17,12 @@ import {
 } from "lucide-react";
 
 const Footer = () => (
-  <footer className="bg-blue-500 text-white p-4 mt-8">
+  <footer className="bg-blue-500 text-white text-center p-4 mt-8">
     <div className="container mx-auto text-center">
       <p>&copy; 2024 SurfBlog. Tous droits réservés.</p>
     </div>
     {/* Social Media Links */}
-    <div className="flex space-x-2 mt-4 lg:mt-0 text-center">
+    <div className="flex space-x-2 mt-4 lg:mt-0 ">
       <a
         href="https://instagram.com"
         target="_blank"
