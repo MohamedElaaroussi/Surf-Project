@@ -9,6 +9,7 @@ import ChallengesPage from './pages/ChallengesPage';
 import VoyagesPage from './pages/VoyagesPage';
 import EquipePage from './pages/EquipePage';
 import AboutPage from './pages/AboutPage';
+import Blog from './components/Blog';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<Blog />} />
             <Route path="/spots" element={<SpotsPage />} />
             <Route path="/challenges" element={<ChallengesPage />} />
             <Route path="/voyages" element={<VoyagesPage />} />

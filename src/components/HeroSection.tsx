@@ -11,11 +11,12 @@ const HeroSection = () => {
     >
       <div className="absolute inset-0 z-0">
         <video autoPlay loop muted className="object-cover w-full h-full">
-          <source src="vidéo/2867832-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+          <source src="vidéo/5382539-uhd_3840_2160_24fps.mp4" type="video/mp4" />
         </video>
       </div>
       <div className="z-10 text-center">
         <motion.h1 
+        
           initial={{ y: -50 }}
           animate={{ y: 0 }}
           transition={{ delay: 0.2, type: "spring", stiffness: 120 }}

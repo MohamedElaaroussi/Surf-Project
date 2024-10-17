@@ -1,13 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaWhatsapp } from "react-icons/fa";
 
 const SocialMediaSection = () => {
-  const socialMedias = ['facebook', 'instagram', 'twitter', 'youtube'];
-  const socialPosts = [
-    "images/instagram.jpg",
-    "https://example.com/images/social-2.jpg",
-    "images/facebook.jpg",
-    "https://example.com/images/social-4.jpg"
+  const socialMedias = [
+    { name: 'facebook', icon: <FaFacebookF />, link: 'https://www.facebook.com/abdilah.farouki' },
+    { name: 'instagram', icon: <FaInstagram />, link: 'https://instagram.com' },
+    { name: 'twitter', icon: <FaTwitter />, link: 'https://twitter.com' },
+    { name: 'youtube', icon: <FaYoutube />, link: 'https://youtube.com' },
+    { name: 'whatsapp', icon: <FaWhatsapp />, link: 'https://api.whatsapp.com/send/?phone=653175243&text=Hello%2C+I+would+like+to+know+more+about+your+services.&type=phone_number&app_absent=0' } // Remplace 'yourNumber' par ton numéro WhatsApp
   ];
 
   return (
@@ -23,27 +24,15 @@ const SocialMediaSection = () => {
         <div className="flex justify-center space-x-8 mb-8">
           {socialMedias.map((social) => (
             <motion.a
-              key={social}
-              href={`https://${social}.com`}
+              key={social.name}
+              href={social.link}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}
               className="text-4xl text-gray-600 hover:text-blue-500"
             >
-              <i className={`fab fa-${social}`}></i>
+              {social.icon}
             </motion.a>
-          ))}
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {socialPosts.map((post, index) => (
-            <motion.img 
-              key={index}
-              src={post}
-              alt={`Social media post ${index + 1}`}
-              className="w-full h-64 object-cover rounded-lg"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            />
           ))}
         </div>
       </div>

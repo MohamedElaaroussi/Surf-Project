@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 
 const PartnersSection = () => {
   const partners = [
-    { name: "Partner 1", logo: "https://example.com/images/partner-1.png" },
-    { name: "Partner 2", logo: "https://example.com/images/partner-2.png" },
+    { name: "Partner 1", logo: "images/partner1.png" },
+    { name: "Partner 2", logo: "images/partner2.svg" },
     { name: "Partner 3", logo: "https://example.com/images/partner-3.png" },
     { name: "Partner 4", logo: "https://example.com/images/partner-4.png" },
     { name: "Partner 5", logo: "https://example.com/images/partner-5.png" },
