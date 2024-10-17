@@ -2,9 +2,22 @@ import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import BlogPost from '../components/BlogPost';
 
-const BlogPage = () => {
+interface SubArticle {
+  title: string;
+  content: string;
+}
+
+interface Article {
+  title: string;
+  date: string;
+  image: string;
+  slug: string;
+  subArticles: SubArticle[];
+}
+
+const BlogPage: React.FC = () => {
   const location = useLocation();
-  const mainArticles = [
+  const mainArticles: Article[] = [
     {
       title: "10 Conseils pour Débuter le Surf",
       date: "15 Mai 2024",
@@ -51,7 +64,7 @@ const BlogPage = () => {
     }
   ];
 
-  const refs = useRef({});
+  const refs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
     if (location.hash) {
@@ -67,7 +80,7 @@ const BlogPage = () => {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Blog</h1>
       {mainArticles.map((article, index) => (
-        <div key={index} ref={el => refs.current[article.slug] = el}>
+        <div key={index} ref={el => (refs.current[article.slug] = el)}>
           <h2 className="text-2xl font-bold mb-4">{article.title}</h2>
           <p className="text-gray-600 mb-4">{article.date}</p>
           {article.image.endsWith('.mp4') ? (

@@ -2,7 +2,16 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import 'tailwindcss/tailwind.css'; // Assurez-vous que Tailwind est configuré
 
-const blogPosts = {
+interface BlogPost {
+  title: string;
+  date: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  isVideo: boolean;
+}
+
+const blogPosts: Record<string, BlogPost> = {
   "10-conseils-pour-debuter-le-surf": {
     title: "10 Conseils pour Débuter le Surf",
     date: "15 Mai 2024",
@@ -63,8 +72,8 @@ const blogPosts = {
 };
 
 const Blog = () => {
-  const { slug } = useParams<{ slug: string }>(); // Assurez-vous que slug est une chaîne
-  const post = blogPosts[slug];
+  const { slug } = useParams<{ slug: string | undefined }>(); // Assurez-vous que slug peut être undefined
+  const post = slug ? blogPosts[slug] : undefined; // Utilisez un opérateur conditionnel
 
   if (!post) {
     return <div className="text-center py-10">Article non trouvé</div>;
@@ -92,4 +101,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default Blog;    
