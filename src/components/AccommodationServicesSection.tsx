@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Home, Car, Waves, Compass } from 'lucide-react';
 
 // Types et interfaces
+interface PricingStructure {
+  daily: number;
+  weekly: number;
+  monthly: number;
+}
+
 interface Accommodation {
   title: string;
-  price: string;
+  pricing: PricingStructure;
   image: string;
   description: string;
   features: string[];
@@ -12,20 +18,20 @@ interface Accommodation {
 
 interface TransportService {
   title: string;
-  price: string;
+  pricing: PricingStructure;
   description: string;
 }
 
 interface SurfPack {
   title: string;
-  price: string;
+  pricing: PricingStructure;
   items: string[];
   image: string;
 }
 
 interface Activity {
   title: string;
-  price: string;
+  pricing: PricingStructure;
   description: string;
 }
 
@@ -36,24 +42,38 @@ interface Services {
 }
 
 const AccommodationServicesSection = () => {
+  const [selectedDuration, setSelectedDuration] = useState<'daily' | 'weekly' | 'monthly'>('daily');
+
   const accommodations: Accommodation[] = [
     {
       title: "Villa Vue Mer",
-      price: "50€/nuit",
+      pricing: {
+        daily: 60,
+        weekly: 350,
+        monthly: 1200
+      },
       image: "images/house_mer.jpg",
       description: "Villa luxueuse avec vue panoramique sur l'océan, 3 chambres",
       features: ["Wifi", "Piscine", "Terrasse", "Parking"]
     },
     {
       title: "Surf House",
-      price: "150€/nuit",
+      pricing: {
+        daily: 65,
+        weekly: 380,
+        monthly: 1300
+      },
       image: "vidéo/vidéo_house.mp4",
       description: "Maison de surfeur authentique à 2min de la plage, 2 chambres",
       features: ["Rack à planches", "Douche extérieure", "BBQ", "Jardin"]
     },
     {
       title: "Beach Bungalow",
-      price: "120€/nuit",
+      pricing: {
+        daily: 80,
+        weekly: 470,
+        monthly: 1600
+      },
       image: "images/house1.jpg",
       description: "Bungalow cozy en front de mer, idéal pour couple",
       features: ["Vue mer", "Cuisine équipée", "Terrasse privée"]
@@ -64,51 +84,92 @@ const AccommodationServicesSection = () => {
     transport: [
       {
         title: "Navette Aéroport",
-        price: "50€/trajet",
+        pricing: {
+          daily: 50,
+          weekly: 280,
+          monthly: 900
+        },
         description: "Service de navette privée depuis l'aéroport"
       },
       {
         title: "Location de voiture",
-        price: "45€/jour",
+        pricing: {
+          daily: 45,
+          weekly: 250,
+          monthly: 800
+        },
         description: "Véhicules adaptés pour le transport de planches"
       }
     ],
     surfing: [
       {
         title: "Pack Débutant",
-        price: "30€/jour",
+        pricing: {
+          daily: 30,
+          weekly: 175,
+          monthly: 600
+        },
         items: ["Planche mousse", "Combinaison", "Leash"],
-        image: "/images/Pack_Débutant.jpg" // Ajoutez votre image pour débutant
+        image: "/images/Pack_Débutant.jpg"
       },
       {
         title: "Pack Confirmé",
-        price: "45€/jour",
+        pricing: {
+          daily: 45,
+          weekly: 260,
+          monthly: 900
+        },
         items: ["Shortboard/Longboard", "Combinaison", "Leash", "Wax"],
-        image: "/images/advanced-surf2.jpg" // Ajoutez votre image pour confirmé
+        image: "/images/advanced-surf2.jpg"
       }
     ],
     activities: [
       {
         title: "Cours de Surf",
-        price: "60€/2h",
+        pricing: {
+          daily: 60,
+          weekly: 350,
+          monthly: 1200
+        },
         description: "Cours particulier avec instructeur certifié"
       },
       {
         title: "Excursion Snorkeling",
-        price: "40€/personne",
+        pricing: {
+          daily: 40,
+          weekly: 230,
+          monthly: 800
+        },
         description: "Découverte des fonds marins (matériel inclus)"
       },
       {
         title: "Yoga sur la Plage",
-        price: "25€/session",
+        pricing: {
+          daily: 25,
+          weekly: 140,
+          monthly: 480
+        },
         description: "Séance de yoga face à l'océan"
       },
       {
         title: "Pêche en Mer",
-        price: "80€/demi-journée",
+        pricing: {
+          daily: 80,
+          weekly: 460,
+          monthly: 1600
+        },
         description: "Sortie pêche avec guide local"
       }
     ]
+  };
+
+  const formatPrice = (pricing: PricingStructure) => {
+    const prices = {
+      daily: `${pricing.daily}€/jour`,
+      weekly: `${pricing.weekly}€/semaine (-${Math.round((1 - pricing.weekly/(pricing.daily * 7)) * 100)}%)`,
+      monthly: `${pricing.monthly}€/mois (-${Math.round((1 - pricing.monthly/(pricing.daily * 30)) * 100)}%)`
+    };
+    return prices[selectedDuration];
   };
 
   const renderMedia = (media: string) => {
@@ -133,6 +194,39 @@ const AccommodationServicesSection = () => {
   return (
     <div className="bg-white py-16">
       <div className="container mx-auto px-4">
+        {/* Sélecteur de durée */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-center mb-4">Choisissez votre durée de séjour</h2>
+          <div className="flex justify-center">
+            <div className="inline-flex rounded-lg shadow-sm">
+              <button
+                onClick={() => setSelectedDuration('daily')}
+                className={`px-4 py-2 text-sm font-medium rounded-l-lg transition-colors ${
+                  selectedDuration === 'daily' ? 'bg-blue-500 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                Journalier
+              </button>
+              <button
+                onClick={() => setSelectedDuration('weekly')}
+                className={`px-4 py-2 text-sm font-medium border-x transition-colors ${
+                  selectedDuration === 'weekly' ? 'bg-blue-500 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                Hebdomadaire
+              </button>
+              <button
+                onClick={() => setSelectedDuration('monthly')}
+                className={`px-4 py-2 text-sm font-medium rounded-r-lg transition-colors ${
+                  selectedDuration === 'monthly' ? 'bg-blue-500 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                Mensuel
+              </button>
+            </div>
+          </div>
+        </div>
+
         {/* Section Hébergements */}
         <div className="mb-16">
           <div className="flex items-center justify-center gap-2 mb-8">
@@ -142,12 +236,12 @@ const AccommodationServicesSection = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {accommodations.map((accommodation, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 {renderMedia(accommodation.image)}
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="text-xl font-bold">{accommodation.title}</h3>
-                    <span className="text-blue-500 font-bold">{accommodation.price}</span>
+                    <span className="text-blue-500 font-bold">{formatPrice(accommodation.pricing)}</span>
                   </div>
                   <p className="text-gray-600 mb-4">{accommodation.description}</p>
                   <div className="flex flex-wrap gap-2">
@@ -172,9 +266,9 @@ const AccommodationServicesSection = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.transport.map((item, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+              <div key={index} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
                 <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                <p className="text-blue-500 font-bold mb-2">{item.price}</p>
+                <p className="text-blue-500 font-bold mb-2">{formatPrice(item.pricing)}</p>
                 <p className="text-gray-600">{item.description}</p>
               </div>
             ))}
@@ -194,12 +288,11 @@ const AccommodationServicesSection = () => {
                 key={index} 
                 className="group relative bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-1"
               >
-                {/* Contenu principal */}
                 <div className="p-6 relative z-10">
                   <h3 className="text-xl font-bold mb-2 transition-colors duration-300 group-hover:text-blue-600">
                     {pack.title}
                   </h3>
-                  <p className="text-blue-500 font-bold mb-4">{pack.price}</p>
+                  <p className="text-blue-500 font-bold mb-4">{formatPrice(pack.pricing)}</p>
                   <ul className="list-disc list-inside text-gray-600">
                     {pack.items.map((item, idx) => (
                       <li key={idx} className="transition-colors duration-300 group-hover:text-gray-800">
@@ -208,8 +301,6 @@ const AccommodationServicesSection = () => {
                     ))}
                   </ul>
                 </div>
-
-                {/* Image de fond avec effet hover */}
                 <div className="absolute inset-0 opacity-7 group-hover:opacity-20 transition-opacity duration-300">
                   <img
                     src={pack.image}
@@ -217,8 +308,6 @@ const AccommodationServicesSection = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-
-                {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-300" />
               </div>
             ))}
@@ -234,9 +323,9 @@ const AccommodationServicesSection = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.activities.map((activity, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+              <div key={index} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
                 <h3 className="text-xl font-bold mb-2">{activity.title}</h3>
-                <p className="text-blue-500 font-bold mb-2">{activity.price}</p>
+                <p className="text-blue-500 font-bold mb-2">{formatPrice(activity.pricing)}</p>
                 <p className="text-gray-600">{activity.description}</p>
               </div>
             ))}
