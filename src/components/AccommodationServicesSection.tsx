@@ -39,7 +39,7 @@ const AccommodationServicesSection = () => {
   const accommodations: Accommodation[] = [
     {
       title: "Villa Vue Mer",
-      price: "250€/nuit",
+      price: "50€/nuit",
       image: "images/house_mer.jpg",
       description: "Villa luxueuse avec vue panoramique sur l'océan, 3 chambres",
       features: ["Wifi", "Piscine", "Terrasse", "Parking"]
