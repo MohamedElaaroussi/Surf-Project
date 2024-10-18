@@ -11,11 +11,15 @@ import NewsletterSection from "../components/NewsletterSection";
 import BookingSection from "../components/BookingSection";
 import SocialMediaSection from "../components/SocialMediaSection";
 import PartnersSection from "../components/PartnersSection";
+import AccommodationServicesSection from "../components/AccommodationServicesSection";
+
+
 
 const HomePage = () => {
   return (
     <div className="overflow-hidden">
       <HeroSection />
+  <AccommodationServicesSection />
       <PresentationSection />
       <PopularSpotsSection />
       <WeatherSection />

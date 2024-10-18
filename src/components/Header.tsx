@@ -16,97 +16,94 @@ import {
   X,
 } from "lucide-react";
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+// Définition des interfaces pour les props
+interface NavLinkProps {
+  to: string;
+  icon: React.ReactNode;
+  text: string;
+}
 
-  const toggleMenu = () => {
+interface MobileNavLinkProps {
+  to: string;
+  icon: React.ReactNode;
+  text: string;
+}
+
+const NavLink: React.FC<NavLinkProps> = ({ to, icon, text }) => (
+  <Link
+    to={to}
+    className="flex items-center space-x-1 text-white hover:text-gray-200 transition-colors duration-200"
+  >
+    {icon}
+    <span>{text}</span>
+  </Link>
+);
+
+const MobileNavLink: React.FC<MobileNavLinkProps> = ({ to, icon, text }) => (
+  <Link
+    to={to}
+    className="flex items-center space-x-2 text-white hover:text-gray-200 transition-colors duration-200 px-4"
+  >
+    {icon}
+    <span>{text}</span>
+  </Link>
+);
+
+const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+  const toggleMenu = (): void => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <header className="bg-blue-600 text-white p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <Link to="/" className="text-2xl font-bold flex items-center">
-          <Waves className="mr-2" /> SurfBlog
-        </Link>
+    <header className="bg-gradient-to-r from-blue-500 to-teal-400 fixed w-full top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2">
+            <Waves className="h-8 w-8 text-white" />
+            <span className="text-xl font-bold text-white">SurfBlog</span>
+          </Link>
 
-        {/* Hamburger Icon for Mobile */}
-        <div className="lg:hidden">
+          {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="text-white focus:outline-none"
+            className="sm:hidden text-white hover:text-gray-200"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden sm:flex space-x-8">
+            <NavLink to="/" icon={<Home className="h-5 w-5" />} text="Accueil" />
+            <NavLink to="/blog" icon={<Book className="h-5 w-5" />} text="Blog" />
+            <NavLink to="/spots" icon={<Map className="h-5 w-5" />} text="Spots" />
+            <NavLink to="/defis" icon={<Award className="h-5 w-5" />} text="Défis" />
+            <NavLink to="/voyages" icon={<Plane className="h-5 w-5" />} text="Voyages" />
+            <NavLink to="/equipe" icon={<Users className="h-5 w-5" />} text="Équipe" />
+            <NavLink to="/about" icon={<User className="h-5 w-5" />} text="À propos" />
+          </nav>
         </div>
 
-        {/* Navigation for larger screens */}
-        <nav
-          className={`lg:flex lg:items-center ${
-            isMenuOpen ? "block" : "hidden"
-          } lg:block`}
-        >
-          <ul className="flex flex-col lg:flex-row lg:space-x-4 mr-4 space-y-2 lg:space-y-0">
-            <li>
-              <Link
-                to="/"
-                className="hover:text-blue-200 transition duration-300 flex items-center"
-              >
-                <Home className="mr-1" /> Accueil
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/blog"
-                className="hover:text-blue-200 transition duration-300 flex items-center"
-              >
-                <Book className="mr-1" /> Blog
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/spots"
-                className="hover:text-blue-200 transition duration-300 flex items-center"
-              >
-                <Map className="mr-1" /> Spots
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/challenges"
-                className="hover:text-blue-200 transition duration-300 flex items-center"
-              >
-                <Award className="mr-1" /> Défis
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/voyages"
-                className="hover:text-blue-200 transition duration-300 flex items-center"
-              >
-                <Plane className="mr-1" /> Voyages
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/equipe"
-                className="hover:text-blue-200 transition duration-300 flex items-center"
-              >
-                <Users className="mr-1" /> Équipe
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/about"
-                className="hover:text-blue-200 transition duration-300 flex items-center"
-              >
-                <User className="mr-1" /> À propos
-              </Link>
-            </li>
-          </ul>
-          
-        </nav>
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="sm:hidden py-4">
+            <div className="flex flex-col space-y-4">
+              <MobileNavLink to="/" icon={<Home className="h-5 w-5" />} text="Accueil" />
+              <MobileNavLink to="/blog" icon={<Book className="h-5 w-5" />} text="Blog" />
+              <MobileNavLink to="/spots" icon={<Map className="h-5 w-5" />} text="Spots" />
+              <MobileNavLink to="/defis" icon={<Award className="h-5 w-5" />} text="Défis" />
+              <MobileNavLink to="/voyages" icon={<Plane className="h-5 w-5" />} text="Voyages" />
+              <MobileNavLink to="/equipe" icon={<Users className="h-5 w-5" />} text="Équipe" />
+              <MobileNavLink to="/about" icon={<User className="h-5 w-5" />} text="À propos" />
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
