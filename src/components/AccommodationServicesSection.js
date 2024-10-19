@@ -20,7 +20,7 @@ const AccommodationServicesSection = () => {
             title: "Voyage Surf",
             pricing: { daily: 100, weekly: 600, monthly: 2000 },
             description: "Explorez les meilleurs spots de surf",
-            icon: _jsx(Plane, { className: "w-8 h-8" })
+            icon: _jsx(Car, { className: "w-8 h-8" })
         },
         {
             title: "Location Matériel",
