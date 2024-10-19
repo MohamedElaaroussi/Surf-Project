@@ -127,7 +127,7 @@ const AccommodationServicesSection: React.FC = () => {
         title: "Pack Débutant",
         pricing: { daily: 30, weekly: 175, monthly: 600 },
         items: ["Planche mousse", "Combinaison", "Leash"],
-        image: "/images/Pack_Debutant.jpg"
+        image: "images/Pack_Débutant.jpg"
       },
       {
         title: "Pack Confirmé",
