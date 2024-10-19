@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Home, Car, Waves, Compass } from 'lucide-react';
+
+import { Home, Car, Waves, Wind, Compass, Plane, BookOpen } from 'lucide-react';
 
 // Types et interfaces
 interface PricingStructure {
@@ -33,6 +34,7 @@ interface Activity {
   title: string;
   pricing: PricingStructure;
   description: string;
+  icon: React.ReactNode;
 }
 
 interface Services {
@@ -41,40 +43,67 @@ interface Services {
   activities: Activity[];
 }
 
-const AccommodationServicesSection = () => {
+const AccommodationServicesSection: React.FC = () => {
   const [selectedDuration, setSelectedDuration] = useState<'daily' | 'weekly' | 'monthly'>('daily');
+
+  const activities: Activity[] = [
+    {
+      title: "Cours de Surf",
+      pricing: { daily: 60, weekly: 350, monthly: 1200 },
+      description: "Apprenez à surfer avec nos instructeurs certifiés",
+      icon: <Waves className="w-8 h-8" />
+    },
+    {
+      title: "Body Board",
+      pricing: { daily: 40, weekly: 230, monthly: 800 },
+      description: "Découvrez les sensations du body board",
+      icon: <Wind className="w-8 h-8" />
+    },
+    {
+      title: "Voyage Surf",
+      pricing: { daily: 100, weekly: 600, monthly: 2000 },
+      description: "Explorez les meilleurs spots de surf",
+      icon: <Plane className="w-8 h-8" />
+    },
+    {
+      title: "Location Matériel",
+      pricing: { daily: 30, weekly: 175, monthly: 600 },
+      description: "Louez tout le matériel nécessaire pour votre session",
+      icon: <Waves className="w-8 h-8" />
+    },
+    {
+      title: "Location Maison",
+      pricing: { daily: 80, weekly: 470, monthly: 1600 },
+      description: "Séjournez dans nos maisons de surf confortables",
+      icon: <Home className="w-8 h-8" />
+    },
+    {
+      title: "Cours Théoriques",
+      pricing: { daily: 40, weekly: 230, monthly: 800 },
+      description: "Approfondissez vos connaissances sur le surf",
+      icon: <BookOpen className="w-8 h-8" />
+    }
+  ];
 
   const accommodations: Accommodation[] = [
     {
       title: "Villa Vue Mer",
-      pricing: {
-        daily: 60,
-        weekly: 350,
-        monthly: 1200
-      },
-      image: "images/house_mer.jpg",
+      pricing: { daily: 60, weekly: 350, monthly: 1200 },
+      image: "/images/house_mer.jpg",
       description: "Villa luxueuse avec vue panoramique sur l'océan, 3 chambres",
       features: ["Wifi", "Piscine", "Terrasse", "Parking"]
     },
     {
       title: "Surf House",
-      pricing: {
-        daily: 65,
-        weekly: 380,
-        monthly: 1300
-      },
-      image: "vidéo/vidéo_house.mp4",
+      pricing: { daily: 65, weekly: 380, monthly: 1300 },
+      image: "/video/video_house.mp4",
       description: "Maison de surfeur authentique à 2min de la plage, 2 chambres",
       features: ["Rack à planches", "Douche extérieure", "BBQ", "Jardin"]
     },
     {
       title: "Beach Bungalow",
-      pricing: {
-        daily: 80,
-        weekly: 470,
-        monthly: 1600
-      },
-      image: "images/house1.jpg",
+      pricing: { daily: 80, weekly: 470, monthly: 1600 },
+      image: "/images/house1.jpg",
       description: "Bungalow cozy en front de mer, idéal pour couple",
       features: ["Vue mer", "Cuisine équipée", "Terrasse privée"]
     }
@@ -84,95 +113,42 @@ const AccommodationServicesSection = () => {
     transport: [
       {
         title: "Navette Aéroport",
-        pricing: {
-          daily: 50,
-          weekly: 280,
-          monthly: 900
-        },
+        pricing: { daily: 50, weekly: 280, monthly: 900 },
         description: "Service de navette privée depuis l'aéroport"
       },
       {
         title: "Location de voiture",
-        pricing: {
-          daily: 45,
-          weekly: 250,
-          monthly: 800
-        },
+        pricing: { daily: 45, weekly: 250, monthly: 800 },
         description: "Véhicules adaptés pour le transport de planches"
       }
     ],
     surfing: [
       {
         title: "Pack Débutant",
-        pricing: {
-          daily: 30,
-          weekly: 175,
-          monthly: 600
-        },
+        pricing: { daily: 30, weekly: 175, monthly: 600 },
         items: ["Planche mousse", "Combinaison", "Leash"],
-        image: "/images/Pack_Débutant.jpg"
+        image: "/images/Pack_Debutant.jpg"
       },
       {
         title: "Pack Confirmé",
-        pricing: {
-          daily: 45,
-          weekly: 260,
-          monthly: 900
-        },
+        pricing: { daily: 45, weekly: 260, monthly: 900 },
         items: ["Shortboard/Longboard", "Combinaison", "Leash", "Wax"],
         image: "/images/advanced-surf2.jpg"
       }
     ],
-    activities: [
-      {
-        title: "Cours de Surf",
-        pricing: {
-          daily: 60,
-          weekly: 350,
-          monthly: 1200
-        },
-        description: "Cours particulier avec instructeur certifié"
-      },
-      {
-        title: "Excursion Snorkeling",
-        pricing: {
-          daily: 40,
-          weekly: 230,
-          monthly: 800
-        },
-        description: "Découverte des fonds marins (matériel inclus)"
-      },
-      {
-        title: "Yoga sur la Plage",
-        pricing: {
-          daily: 25,
-          weekly: 140,
-          monthly: 480
-        },
-        description: "Séance de yoga face à l'océan"
-      },
-      {
-        title: "Pêche en Mer",
-        pricing: {
-          daily: 80,
-          weekly: 460,
-          monthly: 1600
-        },
-        description: "Sortie pêche avec guide local"
-      }
-    ]
+    activities: activities
   };
 
-  const formatPrice = (pricing: PricingStructure) => {
+  const formatPrice = (pricing: PricingStructure): string => {
     const prices = {
       daily: `${pricing.daily}€/jour`,
-      weekly: `${pricing.weekly}€/semaine (-${Math.round((1 - pricing.weekly/(pricing.daily * 7)) * 100)}%)`,
-      monthly: `${pricing.monthly}€/mois (-${Math.round((1 - pricing.monthly/(pricing.daily * 30)) * 100)}%)`
+      weekly: `${pricing.weekly}€/semaine (-${Math.round((1 - pricing.weekly / (pricing.daily * 7)) * 100)}%)`,
+      monthly: `${pricing.monthly}€/mois (-${Math.round((1 - pricing.monthly / (pricing.daily * 30)) * 100)}%)`
     };
     return prices[selectedDuration];
   };
 
-  const renderMedia = (media: string) => {
+  const renderMedia = (media: string): React.ReactNode => {
     const isVideo = media.endsWith('.mp4');
     if (isVideo) {
       return (
@@ -321,10 +297,18 @@ const AccommodationServicesSection = () => {
             <h2 className="text-4xl font-bold text-center">Activités</h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.activities.map((activity, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
-                <h3 className="text-xl font-bold mb-2">{activity.title}</h3>
+              <div 
+                key={index} 
+                className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="bg-blue-100 p-3 rounded-full mr-4">
+                    {activity.icon}
+                  </div>
+                  <h3 className="text-xl font-bold">{activity.title}</h3>
+                </div>
                 <p className="text-blue-500 font-bold mb-2">{formatPrice(activity.pricing)}</p>
                 <p className="text-gray-600">{activity.description}</p>
               </div>
