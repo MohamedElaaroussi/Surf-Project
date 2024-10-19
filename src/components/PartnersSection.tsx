@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 const PartnersSection = () => {
   const partners = [
@@ -14,8 +13,15 @@ const PartnersSection = () => {
   ];
 
   return (
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2922.8569059392184!2d-10.042925025341896!3d29.589705239974574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb48fb339c0219b%3A0x10b661ea21556545!2sMirleft%20Plage%20Maroc!5e1!3m2!1sfr!2sma!4v1729313692899!5m2!1sfr!2sma" width="600" height="450" 
-    style={{border:'0'}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2922.8569059392184!2d-10.042925025341896!3d29.589705239974574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb48fb339c0219b%3A0x10b661ea21556545!2sMirleft%20Plage%20Maroc!5e1!3m2!1sfr!2sma!4v1729313692899!5m2!1sfr!2sma"
+      width="600"
+      height="450"
+      style={{ border: "0" }}
+      allowFullScreen // Correction ici
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade" // Correction ici
+    ></iframe>
   );
 };
 
