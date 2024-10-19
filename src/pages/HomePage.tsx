@@ -30,7 +30,7 @@ const HomePage = () => {
       <NewsletterSection />
       <BookingSection />
       <SocialMediaSection />
-      {/* <PartnersSection /> */}
+      <PartnersSection />
     </div>
   );
 };
