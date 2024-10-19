@@ -49,13 +49,13 @@ const AccommodationServicesSection: React.FC = () => {
   const activities: Activity[] = [
     {
       title: "Cours de Surf",
-      pricing: { daily: 60, weekly: 350, monthly: 1200 },
+      pricing: { daily: 30, weekly: 350, monthly: 1200 },
       description: "Apprenez à surfer avec nos instructeurs certifiés",
       icon: <Waves className="w-8 h-8" />
     },
     {
-      title: "Body Board",
-      pricing: { daily: 40, weekly: 230, monthly: 800 },
+      title: "Cours de BodyBoard",
+      pricing: { daily: 30, weekly: 230, monthly: 800 },
       description: "Découvrez les sensations du body board",
       icon: <Wind className="w-8 h-8" />
     },
@@ -78,7 +78,7 @@ const AccommodationServicesSection: React.FC = () => {
       icon: <Home className="w-8 h-8" />
     },
     {
-      title: "Cours Théoriques",
+      title: "Surf Analyses vidéo",
       pricing: { daily: 40, weekly: 230, monthly: 800 },
       description: "Approfondissez vos connaissances sur le surf",
       icon: <BookOpen className="w-8 h-8" />
