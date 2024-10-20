@@ -294,7 +294,7 @@ const AccommodationServicesSection: React.FC = () => {
         <div>
           <div className="flex items-center justify-center gap-2 mb-8">
             <Compass className="w-8 h-8 text-blue-500" />
-            <h2 className="text-4xl font-bold text-center">Activités aa</h2>
+            <h2 className="text-4xl font-bold text-center">Activités </h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
