@@ -10,7 +10,7 @@ import GallerySection from "../components/GallerySection";
 import NewsletterSection from "../components/NewsletterSection";
 import BookingSection from "../components/BookingSection";
 import SocialMediaSection from "../components/SocialMediaSection";
-import PartnersSection from "../components/PartnersSection";
+import Maps_location from "../components/PartnersSection";
 import AccommodationServicesSection from "../components/AccommodationServicesSection";
 
 
@@ -19,7 +19,7 @@ const HomePage = () => {
   return (
     <div className="overflow-hidden">
       <HeroSection />
-  <AccommodationServicesSection />
+      <AccommodationServicesSection />
       <PresentationSection />
       <PopularSpotsSection />
       <WeatherSection />
@@ -30,7 +30,7 @@ const HomePage = () => {
       <NewsletterSection />
       <BookingSection />
       <SocialMediaSection />
-      <PartnersSection />
+      <Maps_location />
     </div>
   );
 };

@@ -9,11 +9,9 @@ import {
   Award,
   Plane,
   Users,
-  Instagram,
-  Facebook,
-  Send,
   Menu,
   X,
+  ChevronDown,
 } from "lucide-react";
 
 // Définition des interfaces pour les props
@@ -51,10 +49,22 @@ const MobileNavLink: React.FC<MobileNavLinkProps> = ({ to, icon, text }) => (
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   const toggleMenu = (): void => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const toggleDropdown = (): void => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const otherComponents = [
+    { name: "Météo", path: "/meteo" },
+    { name: "Matériel", path: "/materiel" },
+    { name: "Événements", path: "/evenements" },
+    { name: "Galerie", path: "/galerie" },
+  ];
 
   return (
     <header className="bg-gradient-to-r from-blue-500 to-teal-400 fixed w-full top-0 z-50">
@@ -87,6 +97,31 @@ const Header: React.FC = () => {
             <NavLink to="/voyages" icon={<Plane className="h-5 w-5" />} text="Voyages" />
             <NavLink to="/equipe" icon={<Users className="h-5 w-5" />} text="Équipe" />
             <NavLink to="/about" icon={<User className="h-5 w-5" />} text="À propos" />
+
+            {/* Select Option for Other Components */}
+            <div className="relative">
+              <button
+                onClick={toggleDropdown}
+                className="flex items-center space-x-1 text-white hover:text-gray-200 transition-colors duration-200"
+              >
+                <span>Autres</span>
+                <ChevronDown className="h-4 w-4" />
+              </button>
+              {isDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                  {otherComponents.map((component) => (
+                    <Link
+                      key={component.path}
+                      to={component.path}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      {component.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
         </div>
 
@@ -101,6 +136,24 @@ const Header: React.FC = () => {
               <MobileNavLink to="/voyages" icon={<Plane className="h-5 w-5" />} text="Voyages" />
               <MobileNavLink to="/equipe" icon={<Users className="h-5 w-5" />} text="Équipe" />
               <MobileNavLink to="/about" icon={<User className="h-5 w-5" />} text="À propos" />
+              
+              {/* Mobile Select Option for Other Components */}
+              <div className="px-4">
+                <select
+                  onChange={(e) => {
+                    window.location.href = e.target.value;
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full p-2 text-gray-700 bg-white rounded-md"
+                >
+                  <option value="">Autres composants</option>
+                  {otherComponents.map((component) => (
+                    <option key={component.path} value={component.path}>
+                      {component.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
         )}

@@ -1,6 +1,6 @@
 import React from "react";
 
-const PartnersSection = () => {
+const Maps_location = () => {
   const partners = [
     { name: "Partner 1", logo: "images/partner1.png" },
     { name: "Partner 2", logo: "images/partner2.svg" },
@@ -27,4 +27,4 @@ const PartnersSection = () => {
   );
 };
 
-export default PartnersSection;
+export default Maps_location;
