@@ -30,14 +30,14 @@ const HeroSection = () => {
           transition={{ delay: 0.4, type: "spring", stiffness: 120 }}
           className="text-xl mb-8"
         >
-          Découvrez la passion du surf avec nous
+          Découvrez la passion du surf avec
         </motion.p>
         <motion.button 
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
+          className="bg-red-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
         >
-          Commencer l'aventure
+          Commencer l'aventur
         </motion.button>
       </div>
     </motion.section>
