@@ -12,6 +12,7 @@ import BookingSection from "../components/BookingSection";
 import SocialMediaSection from "../components/SocialMediaSection";
 import Maps_location from "../components/PartnersSection";
 import AccommodationServicesSection from "../components/AccommodationServicesSection";
+import TestPage from "./TestPage";
 
 
 
@@ -20,7 +21,7 @@ const HomePage = () => {
     <div className="overflow-hidden">
 
      
-      
+      {/* <TestPage/> */}
       <HeroSection />
       <AccommodationServicesSection />
       <PresentationSection />
@@ -34,6 +35,7 @@ const HomePage = () => {
       <BookingSection />
       <SocialMediaSection />
       <Maps_location />
+      
     </div>
   );
 };
