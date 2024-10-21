@@ -18,6 +18,9 @@ import AccommodationServicesSection from "../components/AccommodationServicesSec
 const HomePage = () => {
   return (
     <div className="overflow-hidden">
+
+     
+      
       <HeroSection />
       <AccommodationServicesSection />
       <PresentationSection />

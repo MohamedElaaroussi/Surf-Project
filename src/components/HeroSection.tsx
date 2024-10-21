@@ -22,7 +22,7 @@ const HeroSection = () => {
           transition={{ delay: 0.2, type: "spring", stiffness: 120 }}
           className="text-6xl font-bold mb-4"
         >
-          Bienvenue sur SurfWave
+          Bienvenue sur SurfWa
         </motion.h1>
         <motion.p 
           initial={{ y: 50 }}
