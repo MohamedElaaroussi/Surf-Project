@@ -10,7 +10,7 @@ import VoyagesPage from './pages/VoyagesPage';
 import EquipePage from './pages/EquipePage';
 import AboutPage from './pages/AboutPage';
 import Blog from './components/Blog';
-
+import MaterialPage from './pages/MaterialPage';
 
 const App = () => {
   return (
@@ -24,9 +24,13 @@ const App = () => {
             <Route path="/blog/:slug" element={<Blog />} />
             <Route path="/spots" element={<SpotsPage />} />
             <Route path="/challenges" element={<ChallengesPage />} />
-            <Route path="/voyages" element={<VoyagesPage />} />
             <Route path="/equipe" element={<EquipePage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/materielle" element={<MaterialPage />} />
+            <Route path="/materielle/:section" element={<MaterialPage />} />
+            <Route path="activites" element={<VoyagesPage />} />
+            {/* <Route path="Activités/Défis" element={<Defis />} /> */}
+            
           </Routes>
           <div className='whatsapp-button'>
             <Link to="https://api.whatsapp.com/send?phone=653175243&text=hy%21%%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202."
