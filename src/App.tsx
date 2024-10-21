@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 // @ts-ignore
 import Header from './components/Header';import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -28,6 +28,12 @@ const App = () => {
             <Route path="/equipe" element={<EquipePage />} />
             <Route path="/about" element={<AboutPage />} />
           </Routes>
+          <div className='whatsapp-button'>
+            <Link to="https://api.whatsapp.com/send?phone=653175243&text=hy%21%%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202."
+               className="float" target="_blank">
+              <i className="fa fa-whatsapp my-float"></i>
+            </Link>
+          </div>
         </main>
         <Footer />
       </div>
