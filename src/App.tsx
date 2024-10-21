@@ -11,6 +11,7 @@ import EquipePage from './pages/EquipePage';
 import AboutPage from './pages/AboutPage';
 import Blog from './components/Blog';
 
+
 const App = () => {
   return (
     <Router>

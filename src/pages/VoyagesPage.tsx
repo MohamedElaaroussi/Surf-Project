@@ -18,7 +18,8 @@ const VoyageCard: React.FC<VoyageProps> = ({ destination, description, duration,
 
   return (
     <div
-      className="bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-300 ease-in-out hover:scale-105"
+      className="bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-300
+       ease-in-out hover:scale-105"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -46,15 +47,15 @@ const VoyageCard: React.FC<VoyageProps> = ({ destination, description, duration,
           />
         )}
         <div
-          className={`absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-gradient-to-t from-black/70 to-black/20 flex items-center justify-center transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <p className="text-white text-center px-4">{description}</p>
+          <p className="text-white text-center px-4 font-light">{description}</p>
         </div>
       </div>
       <div className="p-4">
-        <h3 className="font-bold text-xl mb-2">{destination}</h3>
+        <h3 className="font-bold text-xl mb-2 text-gray-800">{destination}</h3>
         <p className="text-sm text-gray-600 mb-2">Durée: {duration}</p>
         <p className="text-sm font-semibold text-blue-600">Prix: {price}</p>
       </div>
@@ -76,12 +77,31 @@ const VoyagesPage = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8 text-center">Voyages de Surf</h1>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {voyages.map((voyage, index) => (
-          <VoyageCard key={index} {...voyage} />
-        ))}
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section with responsive height */}
+      <div className="relative h-[60vh] md:h-[60vh] lg:h-[80vh] xl:h-[90vh] mt-12 mb-4">
+        <img 
+          src="/images/30-day-challenge.jpg" 
+          alt="Surf Adventure"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/20 flex flex-col justify-center items-center text-white">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 text-center">Aventures de Surf</h1>
+          <p className="text-lg md:text-xl lg:text-2xl font-light max-w-2xl text-center px-4">
+            Découvrez les meilleures destinations de surf à travers le monde. 
+            Des vagues parfaites, des paysages à couper le souffle et des expériences inoubliables.
+          </p>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="container mx-auto px-4 py-8">
+        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">Nos Destinations</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {voyages.map((voyage, index) => (
+            <VoyageCard key={index} {...voyage} />
+          ))}
+        </div>
       </div>
     </div>
   );
