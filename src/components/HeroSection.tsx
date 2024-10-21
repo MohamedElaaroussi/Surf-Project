@@ -16,7 +16,7 @@ const HeroSection: React.FC = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-    }, 5000);
+    }, 2000);
     return () => clearInterval(timer);
   }, []);
 
