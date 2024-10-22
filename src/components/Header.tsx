@@ -216,7 +216,7 @@ const Header: React.FC = () => {
       ],
     },
     { to: "/pourquoi-nous", icon: <HelpCircle className="h-5 w-5" />, text: "Pourquoi nous ?" },
-    { to: "/contact", icon: <Mail className="h-5 w-5" />, text: "Contact" },
+    { to: "/about", icon: <Mail className="h-5 w-5" />, text: "Contact" },
   ];
 
   return (
