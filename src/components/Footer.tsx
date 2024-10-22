@@ -17,58 +17,24 @@ import {
 } from "lucide-react";
 
 const Footer = () => (
-  <footer className="bg-blue-500 text-white text-center p-4 mt-8">
-    <div className="container mx-auto text-center">
-      <p>&copy; 2024 SurfBlog. Tous droits réservés.</p>
-    </div>
-    {/* Social Media Links */}
-    <div className="flex space-x-2 mt-4 lg:mt-0 ">
-      <a
-        href="https://instagram.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-blue-200 transition duration-300"
-      >
-        <Instagram size={20} />
-      </a>
-      <a
-        href="https://facebook.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-blue-200 transition duration-300"
-      >
-        <Facebook size={20} />
-      </a>
-      <a
-        href="https://tiktok.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-blue-200 transition duration-300"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
-        </svg>
-      </a>
-      <a
-        href="https://wa.me/1234567890"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:text-blue-200 transition duration-300"
-      >
-        <Send size={20} />
-      </a>
-    </div>
-  </footer>
+  <footer className="footer">
+  <div className="waves">
+    <div className="wave" id="wave1"></div>
+    <div className="wave" id="wave2"></div>
+    <div className="wave" id="wave3"></div>
+    <div className="wave" id="wave4"></div>
+  </div>
+
+  <ul className="menu">
+    <li className="menu__item"><a className="menu__link" href="#">Home</a></li>
+    <li className="menu__item"><a className="menu__link" href="#">About us</a></li>
+    <li className="menu__item"><a className="menu__link" href="#">Contact us</a></li>
+
+  </ul>
+  <p style={{opacity:"0.75;"}}>Made with 🤍 by Mohamed</p>
+
+</footer>
+
 );
 
 export default Footer;

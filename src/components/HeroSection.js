@@ -1,6 +1,0 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { motion } from "framer-motion";
-const HeroSection = () => {
-    return (_jsxs(motion.section, { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 1 }, className: "relative h-screen flex items-center justify-center text-white", children: [_jsx("div", { className: "absolute inset-0 z-0", children: _jsx("video", { autoPlay: true, loop: true, muted: true, className: "object-cover w-full h-full", children: _jsx("source", { src: "vid\u00E9o/5382539-uhd_3840_2160_24fps.mp4", type: "video/mp4" }) }) }), _jsxs("div", { className: "z-10 text-center", children: [_jsx(motion.h1, { initial: { y: -50 }, animate: { y: 0 }, transition: { delay: 0.2, type: "spring", stiffness: 120 }, className: "text-6xl font-bold mb-4", children: "Bienvenue sur SurfWave" }), _jsx(motion.p, { initial: { y: 50 }, animate: { y: 0 }, transition: { delay: 0.4, type: "spring", stiffness: 120 }, className: "text-xl mb-8", children: "D\u00E9couvrez la passion du surf avec" }), _jsx(motion.button, { whileHover: { scale: 1.05 }, whileTap: { scale: 0.95 }, className: "bg-red-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full", children: "Commencer l'aventur" })] })] }));
-};
-export default HeroSection;

@@ -8,7 +8,7 @@ interface SubArticle {
 }
 
 interface Article {
-  title: string;
+  title: string; 
   date: string;
   image: string;
   slug: string;
