@@ -21,14 +21,23 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import { jsx as _jsx } from "react/jsx-runtime";
-import * as React from "react";
-import * as LabelPrimitive from "@radix-ui/react-label";
 import { cva } from "class-variance-authority";
 import { cn } from "../../lib/utils";
-var labelVariants = cva("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70");
-var Label = React.forwardRef(function (_a, ref) {
-    var className = _a.className, props = __rest(_a, ["className"]);
-    return (_jsx(LabelPrimitive.Root, __assign({ ref: ref, className: cn(labelVariants(), className) }, props)));
+var badgeVariants = cva("inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2", {
+    variants: {
+        variant: {
+            default: "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
+            secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+            destructive: "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
+            outline: "text-foreground",
+        },
+    },
+    defaultVariants: {
+        variant: "default",
+    },
 });
-Label.displayName = LabelPrimitive.Root.displayName;
-export { Label };
+function Badge(_a) {
+    var className = _a.className, variant = _a.variant, props = __rest(_a, ["className", "variant"]);
+    return (_jsx("div", __assign({ className: cn(badgeVariants({ variant: variant }), className) }, props)));
+}
+export { Badge, badgeVariants };
