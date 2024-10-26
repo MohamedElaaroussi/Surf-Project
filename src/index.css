@@ -248,21 +248,22 @@
 
 @keyframes animateWaves {
   0% {
-    background-position-x: 1000px;
+    background-position-x: 1000px; /* Corrigé ici */
   }
   100% {
-    background-positon-x: 0px;
+    background-position-x: 0px; /* Corrigé ici */
   }
 }
 
 @keyframes animate {
   0% {
-    background-position-x: -1000px;
+    background-position-x: -1000px; /* Corrigé ici */
   }
   100% {
-    background-positon-x: 0px;
+    background-position-x: 0px; /* Corrigé ici */
   }
 }
+
 
 .float {
   position: fixed;

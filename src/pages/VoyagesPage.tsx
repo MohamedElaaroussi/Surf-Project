@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Calendar, Trophy, Users, Timer } from 'lucide-react';
+import MaterialPage from './MaterialPage';
 
 interface VoyageProps {
   destination: string;
@@ -211,78 +212,81 @@ const VoyagesPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-16">
-      <div className="relative h-[60vh] md:h-[60vh] lg:h-[80vh] xl:h-[90vh] mb-4">
-        <img
-          src="/images/30-day-challenge.jpg"
-          alt="Surf Adventure"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/20 flex flex-col justify-center items-center text-white">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 text-center">Aventures de Surf</h1>
-          <p className="text-lg md:text-xl lg:text-2xl font-light max-w-2xl text-center px-4">
-            Découvrez les meilleures destinations de surf à travers le monde.
-            Des vagues parfaites, des paysages à couper le souffle et des expériences inoubliables.
-          </p>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">Nos Destinations</h2>
-        <motion.div
-          ref={scrollRef}
-          className="flex overflow-x-scroll pb-10 hide-scrollbar"
-          whileTap={{ cursor: "grabbing" }}
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
-        >
-          {voyages.map((voyage, index) => (
-            <VoyageCard key={index} {...voyage} />
-          ))}
-        </motion.div>
-      </div>
-
-      <section ref={challengesSectionRef} id="defis-evenements" className="py-16 bg-gradient-to-b from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold mb-4 text-gray-800">Défis et Événements</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Participez à nos défis et événements exclusifs pour progresser et rencontrer d'autres passionnés de surf.
+    <div>
+      <MaterialPage />
+      <div className="min-h-screen bg-gray-50 pt-16">
+        <div className="relative h-[60vh] md:h-[60vh] lg:h-[80vh] xl:h-[90vh] mb-4">
+          <img
+            src="/images/30-day-challenge.jpg"
+            alt="Surf Adventure"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/20 flex flex-col justify-center items-center text-white">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 text-center">Aventures de Surf</h1>
+            <p className="text-lg md:text-xl lg:text-2xl font-light max-w-2xl text-center px-4">
+              Découvrez les meilleures destinations de surf à travers le monde.
+              Des vagues parfaites, des paysages à couper le souffle et des expériences inoubliables.
             </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayedChallenges.map((challenge, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-              >
-                <EventCard {...challenge} />
-              </motion.div>
-            ))}
           </div>
+        </div>
 
-          <motion.div className="text-center mt-12" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <button
-              onClick={() => setShowMore(!showMore)}
-              className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition-colors duration-300"
-            >
-              {showMore ? "Voir moins d'événements" : "Voir plus d'événements"}
-            </button>
+        <div className="container mx-auto px-4 py-8">
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">Nos Destinations</h2>
+          <motion.div
+            ref={scrollRef}
+            className="flex overflow-x-scroll pb-10 hide-scrollbar"
+            whileTap={{ cursor: "grabbing" }}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+          >
+            {voyages.map((voyage, index) => (
+              <VoyageCard key={index} {...voyage} />
+            ))}
           </motion.div>
         </div>
-      </section>
+
+        <section ref={challengesSectionRef} id="defis-evenements" className="py-16 bg-gradient-to-b from-gray-50 to-blue-50">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl font-bold mb-4 text-gray-800">Défis et Événements</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Participez à nos défis et événements exclusifs pour progresser et rencontrer d'autres passionnés de surf.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {displayedChallenges.map((challenge, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                >
+                  <EventCard {...challenge} />
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div className="text-center mt-12" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <button
+                onClick={() => setShowMore(!showMore)}
+                className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition-colors duration-300"
+              >
+                {showMore ? "Voir moins d'événements" : "Voir plus d'événements"}
+              </button>
+            </motion.div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };

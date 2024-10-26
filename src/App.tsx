@@ -1,23 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import BlogPage from './pages/BlogPage';
-import SpotsPage from './pages/SpotsPage';
-import ChallengesPage from './pages/ChallengesPage';
-import VoyagesPage from './pages/VoyagesPage';
-import EquipePage from './pages/EquipePage';
-import AboutPage from './pages/AboutPage';
-import Blog from './components/Blog';
-import MaterialPage from './pages/MaterialPage';
-import Loading from './components/Loading'; // Importez le composant Loading
+// src/App.js
+import React, { useState, useEffect } from "react";
+import { RouterProvider } from "react-router-dom";
+import RoutesConfig from "./components/Routes/RoutesConfig";
+import Loading from "./components/Loading";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simule un chargement de 3 secondes
     const timer = setTimeout(() => {
       setLoading(false);
     }, 3000);
@@ -25,36 +15,13 @@ const App = () => {
   }, []);
 
   if (loading) {
-    return <Loading />; // Affiche le composant Loading pendant le chargement
+    return <Loading />;
   }
 
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-grow container mx-auto mt-8 px-4">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<Blog />} />
-            <Route path="/spots" element={<SpotsPage />} />
-            <Route path="/challenges" element={<ChallengesPage />} />
-            <Route path="/equipe" element={<EquipePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/materielle" element={<MaterialPage />} />
-            <Route path="/materielle/:section" element={<MaterialPage />} />
-            <Route path="activites" element={<VoyagesPage />} />
-          </Routes>
-          <div className='whatsapp-button'>
-            <Link to="https://api.whatsapp.com/send?phone=653175243&text=abdeillah."
-               className="float" target="_blank">
-              <i className="fa fa-whatsapp my-float"></i>
-            </Link>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <div>
+      <RouterProvider router={RoutesConfig} />
+    </div>
   );
 };
 
