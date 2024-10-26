@@ -19,7 +19,7 @@ import {
   Car,
   Shirt,
   Video,
-  LucideIcon
+  LucideIcon,
 } from "lucide-react";
 
 interface NavOption {
@@ -37,7 +37,14 @@ interface NavLinkProps {
   delay?: number;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({ to, icon, text, options, isMobile, delay = 0 }) => {
+const NavLink: React.FC<NavLinkProps> = ({
+  to,
+  icon,
+  text,
+  options,
+  isMobile,
+  delay = 0,
+}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(!isMobile);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -86,7 +93,9 @@ const NavLink: React.FC<NavLinkProps> = ({ to, icon, text, options, isMobile, de
 
   const linkClasses = isMobile
     ? `flex items-center justify-between w-full p-2 text-white hover:bg-blue-700 transition-all duration-300 
-       ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`
+       ${
+         isVisible ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
+       }`
     : "flex items-center space-x-1 text-white hover:text-blue-200 transition-colors duration-200";
 
   const iconWrapper = isMobile ? (
@@ -103,8 +112,8 @@ const NavLink: React.FC<NavLinkProps> = ({ to, icon, text, options, isMobile, de
       onMouseEnter={!isMobile ? handleMouseEnter : undefined}
       onMouseLeave={!isMobile ? handleMouseLeave : undefined}
       style={{
-        transition: 'all 0.3s ease',
-        transitionDelay: `${delay}ms`
+        transition: "all 0.3s ease",
+        transitionDelay: `${delay}ms`,
       }}
     >
       <Link
@@ -114,14 +123,22 @@ const NavLink: React.FC<NavLinkProps> = ({ to, icon, text, options, isMobile, de
       >
         <div className="flex items-center space-x-2">
           {iconWrapper}
-          <span className={`${isMobile ? 'transform transition-all duration-300 group-hover:translate-x-1' : ''}`}>
+          <span
+            className={`${
+              isMobile
+                ? "transform transition-all duration-300 group-hover:translate-x-1"
+                : ""
+            }`}
+          >
             {text}
           </span>
         </div>
         {options && (
-          <ChevronDown 
-            className={`h-4 w-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''} 
-            ${isMobile ? 'transform hover:scale-110' : ''}`}
+          <ChevronDown
+            className={`h-4 w-4 transition-transform duration-300 ${
+              isOpen ? "rotate-180" : ""
+            } 
+            ${isMobile ? "transform hover:scale-110" : ""}`}
           />
         )}
       </Link>
@@ -129,9 +146,11 @@ const NavLink: React.FC<NavLinkProps> = ({ to, icon, text, options, isMobile, de
         <div
           ref={menuRef}
           className={`
-            ${isMobile 
-              ? "w-full bg-blue-600 pl-4 transform transition-all duration-300" 
-              : "absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10"}
+            ${
+              isMobile
+                ? "w-full bg-blue-600 pl-4 transform transition-all duration-300"
+                : "absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10"
+            }
           `}
           onMouseEnter={() => {
             if (!isMobile && timeoutRef.current) {
@@ -152,11 +171,15 @@ const NavLink: React.FC<NavLinkProps> = ({ to, icon, text, options, isMobile, de
               }
               style={{
                 animationDelay: `${index * 100}ms`,
-                animationFillMode: 'forwards'
+                animationFillMode: "forwards",
               }}
             >
               <span className="flex items-center">
-                <span className={`transform transition-all duration-300 ${isMobile ? 'hover:scale-110 hover:rotate-12' : ''}`}>
+                <span
+                  className={`transform transition-all duration-300 ${
+                    isMobile ? "hover:scale-110 hover:rotate-12" : ""
+                  }`}
+                >
                   {option.icon}
                 </span>
                 <span className="ml-2">{option.name}</span>
@@ -192,7 +215,11 @@ const Header: React.FC = () => {
       text: "Galerie",
       options: [
         { name: "Blog", path: "/blog", icon: <Book className="h-4 w-4" /> },
-        { name: "Derniers articles", path: "/articles", icon: <Clock className="h-4 w-4" /> },
+        {
+          name: "Derniers articles",
+          path: "/articles",
+          icon: <Clock className="h-4 w-4" />,
+        },
       ],
     },
     {
@@ -208,15 +235,39 @@ const Header: React.FC = () => {
       icon: <Package className="h-5 w-5" />,
       text: "Les packs",
       options: [
-        { name: "Cours de surf", path: "materielle/cours", icon: <Shirt className="h-4 w-4" /> },
-        { name: "Location", path: "materielle/location", icon: <Car className="h-4 w-4" /> },
-        { name: "Surf analyses vidéo", path: "materielle/analyses", icon: <Video className="h-4 w-4" /> },
-        { name: "Planches", path: "materielle/planches", icon: <Package className="h-4 w-4" /> },
-        { name: "Combinaisons", path: "materielle/combinaisons", icon: <Shirt className="h-4 w-4" /> },
+        {
+          name: "Cours de surf",
+          path: "materielle/cours",
+          icon: <Shirt className="h-4 w-4" />,
+        },
+        {
+          name: "Location",
+          path: "materielle/location",
+          icon: <Car className="h-4 w-4" />,
+        },
+        {
+          name: "Surf analyses vidéo",
+          path: "materielle/analyses",
+          icon: <Video className="h-4 w-4" />,
+        },
+        {
+          name: "Planches",
+          path: "materielle/planches",
+          icon: <Package className="h-4 w-4" />,
+        },
+        {
+          name: "Combinaisons",
+          path: "materielle/combinaisons",
+          icon: <Shirt className="h-4 w-4" />,
+        },
       ],
     },
-    { to: "/pourquoi-nous", icon: <HelpCircle className="h-5 w-5" />, text: "Pourquoi nous ?" },
-    { to: "/about", icon: <Mail className="h-5 w-5" />, text: "Contact" },
+    {
+      to: "/pourquoi-nous",
+      icon: <HelpCircle className="h-5 w-5" />,
+      text: "Pourquoi nous ?",
+    },
+    { to: "/about", icon: <Mail className="h-5 w-5" />, text: "Contactzzz" },
   ];
 
   return (
@@ -246,8 +297,8 @@ const Header: React.FC = () => {
             <span className="text-xl font-bold text-white">SurfBlog</span>
           </Link>
 
-          <button 
-            onClick={toggleMenu} 
+          <button
+            onClick={toggleMenu}
             className="lg:hidden text-white hover:text-blue-200 transition-transform duration-300 hover:scale-110"
             aria-label="Toggle menu"
           >
@@ -269,10 +320,10 @@ const Header: React.FC = () => {
           <div className="lg:hidden py-4 bg-blue-600 absolute top-16 left-0 w-full shadow-lg">
             <div className="flex flex-col">
               {navItems.map((item, index) => (
-                <NavLink 
-                  key={item.to} 
-                  {...item} 
-                  isMobile={true} 
+                <NavLink
+                  key={item.to}
+                  {...item}
+                  isMobile={true}
                   delay={index * 100}
                 />
               ))}
