@@ -46,7 +46,7 @@ const App = () => {
             <Route path="activites" element={<VoyagesPage />} />
           </Routes>
           <div className='whatsapp-button'>
-            <Link to="https://api.whatsapp.com/send?phone=653175243&text=hy%21%%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202."
+            <Link to="https://api.whatsapp.com/send?phone=653175243&text=abdeillah."
                className="float" target="_blank">
               <i className="fa fa-whatsapp my-float"></i>
             </Link>
