@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/card';
+import { Badge } from '../components/ui/badge';
 import { Calendar, Trophy, Users, Timer } from 'lucide-react';
 
 interface VoyageProps {
@@ -11,6 +11,15 @@ interface VoyageProps {
   duration: string;
   price: string;
   media: string;
+}
+
+interface EventCardProps {
+  title: string;
+  date: string;
+  participants: number;
+  duration: string;
+  level: string;
+  description: string;
 }
 
 const VoyageCard: React.FC<VoyageProps> = ({ destination, description, duration, price, media }) => {
@@ -63,7 +72,7 @@ const VoyageCard: React.FC<VoyageProps> = ({ destination, description, duration,
   );
 };
 
-const EventCard = ({ title, date, participants, duration, level, description }) => {
+const EventCard: React.FC<EventCardProps> = ({ title, date, participants, duration, level, description }) => {
   return (
     <Card className="w-full md:w-[350px] group hover:shadow-xl transition-all duration-300">
       <CardHeader>
@@ -99,11 +108,15 @@ const EventCard = ({ title, date, participants, duration, level, description }) 
   );
 };
 
-const VoyagesPage = () => {
+const VoyagesPage: React.FC = () => {
   const location = useLocation();
-  const challengesSectionRef = useRef(null);
+  const challengesSectionRef = useRef<HTMLElement>(null);
   const navigate = useNavigate();
   const [showMore, setShowMore] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const allChallenges = [
     {
@@ -173,15 +186,12 @@ const VoyagesPage = () => {
     }
   }, [location]);
 
-  const scrollRef = useRef();
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsDragging(true);
-    setStartX(e.pageX - scrollRef.current.offsetLeft);
-    setScrollLeft(scrollRef.current.scrollLeft);
+    if (scrollRef.current) {
+      setStartX(e.pageX - scrollRef.current.offsetLeft);
+      setScrollLeft(scrollRef.current.scrollLeft);
+    }
   };
 
   const handleMouseLeave = () => {
@@ -192,8 +202,8 @@ const VoyagesPage = () => {
     setIsDragging(false);
   };
 
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging || !scrollRef.current) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
     const walk = (x - startX) * 2;
